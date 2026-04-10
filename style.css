@@ -1,18 +1,109 @@
+body {
+    background-image: url('orange.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 .navbar {
-	display: flex;
-	justify-content: center;
-  	gap: 50px; 
-  	background-color: #B3B3B3; 
-	padding: 10px;
-	font-family: Arial, sans-serif;
-	font-size: 25px;
-	margin-bottom: 20px;
+    background-color: rgb(180, 73, 2);
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
 }
 
-.nav-button {
-	color: black;
+.navbar a {
+    color: white;
+    font-size: 2rem;
+    text-decoration: none;
+    transition: transform 0.5s ease, color 0.5s ease;
+    display: inlick-block;
 }
 
-a {
-	text-decoration: none;
+.navbar a:hover {
+    transform: scale(1.2);
+    text-shadow: 0 0 10px white;
+}
+
+.navbar a:visited {
+    text-decoration: none;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgb(197, 197, 197);
+    width: 150%;
+    max-width: 500px;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: left;
+    margin: 20px auto;
+}
+
+.profile p {
+    margin: 5px 0;
+}
+
+.image img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    border-color: rgb(0, 0, 0);
+}
+
+hr {
+    width: 100%;        
+    border: none;       
+    height: 1px;     
+    background-color: #000000;  
+    margin: 10px 0;   
+}
+
+.collapsible {
+    background: rgb(197, 197, 197);
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto; 
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none; 
+    outline: none;
+}
+
+.content {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc; 
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-around; 
+    align-items: flex-start;      
+    width: 100%;
+    margin-top: 20px;
+}
+
+.info-column {
+    flex: 1;               
+    text-align: left;      
+    padding: 0 20px;
+}
+
+.info-column ul {
+    list-style-position: inside; 
+    padding-left: 0;
 }
