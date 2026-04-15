@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Major Exam</title>
+        <link rel="stylesheet" href="upload.css">
+    </head>
+    <body>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="lab.html">Lab</a>
+            <a href="#">Exam</a>
+        </nav>
+
+        <div class="container">
+            <h2>Exam Upload</h2>
+            <form class="uploadForm">
+                <label>Title/Description:</label>
+                <input type="text" id="title" placeholder="Enter exam title" required>
+
+                <label>File Upload:</label>
+                <input type="file" id="examFile" required>
+
+                <label>Proof Image (Required):</label>
+                <input type="file" id="proofImage" accept="image/*" required>
+
+                <button type="submit">Submit Major Exam</button>
+            </form>
+            <div id="statusMessage"></div>
+        </div>
+
+        <script src="upload.js"></script>
+    </body>
+</html>
