@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple carousel · example</title>
+    <style>
+        /* just the basics — no extra decorations */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url('../orange.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .card {
+            max-width: 700px;
+            width: 100%;
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem 1.5rem 2.5rem 1.5rem;
+            box-shadow: 0 15px 30px #b9a6dd;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: auto;
+        }
+
+        h2 {
+            color: #2c2152;
+            margin-bottom: 1.8rem;
+            font-weight: 500;
+            font-size: 2rem;
+        }
+
+        /* ---------- SIMPLE CAROUSEL ---------- */
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.2rem;
+            scroll-snap-type: x mandatory;
+            padding: 0.5rem 0.2rem 1.5rem 0.2rem;
+            /* hide scrollbar if you want cleaner look (optional) */
+            scrollbar-width: thin;
+            scrollbar-color: #a58bd4 #e5d9ff;
+        }
+
+        /* for Chrome/Safari */
+        .carousel::-webkit-scrollbar {
+            height: 8px;
+        }
+        .carousel::-webkit-scrollbar-track {
+            background: #e5d9ff;
+            border-radius: 20px;
+        }
+        .carousel::-webkit-scrollbar-thumb {
+            background: #a58bd4;
+            border-radius: 20px;
+        }
+
+        .carousel-item {
+            scroll-snap-align: start;
+            flex: 0 0 auto;
+            width: 220px;
+            height: 150px;
+            background: #7a62b5;
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 8px 12px #9d87cf;
+            border: 3px solid white;
+        }
+
+        .navbar {
+            background-color: rgb(180, 73, 2);
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .navbar a {
+            color: white;
+            font-size: 2rem;
+            text-decoration: none;
+            transition: transform 0.5s ease, color 0.5s ease;
+            display: inlick-block;
+        }
+
+        .navbar a:hover {
+            transform: scale(1.2);
+            text-shadow: 0 0 10px white;
+        }
+
+        .navbar a:visited {
+            text-decoration: none;
+        }
+
+        /* make images fit (if you use real images) */
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1.4rem;
+        }
+
+        .note {
+            margin-top: 1.5rem;
+            color: #4a3977;
+            background: #eee5ff;
+            padding: 0.8rem 1.2rem;
+            border-radius: 3rem;
+            font-size: 1rem;
+        }
+
+        .nav {
+            margin-top: 1.5rem;
+            color: #4a3977;
+            background: #eee5ff;
+            padding: 0.8rem 1.2rem;
+            border-radius: 3rem;
+            font-size: 1rem;
+            justify-content: center;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            margin-top: 1.5px;
+            color: #4a3977;
+            background: #eee5ff;
+            padding: 0.8px 20px;
+            border-radius: 3rem;
+            font-size: 15px;
+            display: flex;
+            gap: 0.1px;
+            background-color: rgb(177, 177, 177);
+            text-decoration: none;
+            
+        }
+        button:hover {
+            background-color: white;
+        }
+
+        button a {
+            text-decoration: none;
+            color: black;
+        }
+
+        /* GO BACK BUTTON */
+        .back-btn {
+            position: absolute;   
+            top: 110px;           
+            left: 20px;           
+            background-color: rgb(243, 121, 39); 
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.2s ease;
+            z-index: 10;          
+        }
+
+        .back-btn:hover {
+            background-color: rgb(140, 50, 2);
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html">Home</a>
+        <a href="../dashboard.html">Dashboard</a>
+        <a href="../quiz.html">Quiz</a>
+        <a href="../lab.html">Lab</a>
+        <a href="../exam.html">Exam</a>
+    </nav>
+
+    <a href="../lab.html" class="back-btn">Go Back</a>
+
+    <div class="card">
+        <h2>🖼️ simple Carousel</h2>
+
+        <!-- === CAROUSEL (only HTML + CSS) === -->
+        <div class="carousel">
+            <!-- slide 1 (using colored divs with emoji – you can replace with <img> ) -->
+            <div class="carousel-item" id="item-1"><img src="meme/dog.gif" alt="dog"></div>
+            <div class="carousel-item" id="item-2"><img src="meme/prv.gif" alt="prv"></div>
+            <div class="carousel-item" id="item-3"><img src="meme/67.gif" alt="67"></div>
+            <div class="carousel-item" id="item-4"><img src="meme/toothless.gif"></div>
+            <div class="carousel-item" id="item-5"><img src="meme/flight.gif" alt="flight"></div>
+            <div class="carousel-item" id="item-6"><img src="meme/speed.gif" alt="speed"></div>
+        </div>
+
+        <div class="nav">
+            <button><a href="#item-1">Slide 1</a></button>
+            <button><a href="#item-2">Slide 2</a></button>
+            <button><a href="#item-3">Slide 3</a></button>
+            <button><a href="#item-4">Slide 4</a></button>
+            <button><a href="#item-5">Slide 5</a></button>
+            <button><a href="#item-6">Slide 6</a></button>
+        </div>
+
+        <div class="note">
+            ⬅️ swipe / drag →  ·  snap enabled  ·  pure CSS
+        </div>
+
+        <!-- short explanation -->
+        <p style="margin-top: 1.5rem; color:#3c2d66; background:#f3ecff; padding:0.6rem; border-radius:3rem;">
+            ✔️ <code>display: flex</code> + <code>overflow-x: auto</code> + <code>scroll-snap-type</code>
+        </p>
+    </div>
+</body>
+</html>
