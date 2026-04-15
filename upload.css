@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-image: url('orange.jpg');
     background-size: cover;
@@ -20,7 +26,7 @@ body {
     font-size: 2rem;
     text-decoration: none;
     transition: transform 0.5s ease, color 0.5s ease;
-    display: inlick-block;
+    display: inline-block;
 }
 
 .navbar a:hover {
@@ -83,7 +89,6 @@ body {
     background-color: rgb(140, 50, 2);
 }
 
-/* Styling for the trigger button */
 .toggle-btn {
     position: fixed;   
     left: 20px;         
@@ -91,31 +96,31 @@ body {
     z-index: 1001;      
     padding: 20px 20px;
     border-radius: 50px;
-    background-color: rgb(243, 121, 39); /* Matching your theme color */
+    background-color: rgb(243, 121, 39); 
     color: white;
     border: none;
     cursor: pointer;
     font-size: 20px;
     font-weight: bold;
-    transition: all 0.3s ease; /* Smooth hover effect */
+    transition: all 0.3s ease; 
 }
 
 .toggle-btn:hover {
     background-color: rgb(180, 73, 2);
-    transform: scale(1.05); /* Slight growth on hover */
+    transform: scale(1.05); 
 }
 
 .sidebar {
-    height: 100%;       /* Full screen height */
-    width: 250px;       /* Fixed width */
-    position: fixed;   /* Sticks to the screen */
-    z-index: 1000;      /* Behind the toggle button */
+    height: 100%;       
+    width: 250px;      
+    position: fixed;   
+    z-index: 1000;     
     top: 0;
-    left: -500px;       /* Hidden off-screen by its width */
-    background-color: rgb(197, 197, 197); /* White panel */
+    left: -500px;      
+    background-color: rgb(197, 197, 197); 
     color: #333;
-    overflow-x: hidden; /* Prevent horizontal scroll */
-    padding: 80px 20px 20px; /* Leave space at top for button */
+    overflow-x: hidden; 
+    padding: 80px 20px 20px; 
     transition: 0.5s ease; 
     box-shadow: 2px 0 10px rgba(0,0,0,0.2); 
     border-radius: 20px;
