@@ -163,4 +163,99 @@ body {
     left: 300px; 
 }
 
+.collapsible {
+    background: rgb(197, 197, 197);
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto; 
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
 
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    list-style: none; 
+    outline: none;
+}
+
+.content {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #ccc; 
+}
+
+/* Container for the column of cards */
+#localFileContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.proof-preview {
+    width: 150px; /* Small preview like the reference */
+    border-radius: 8px;
+    margin: 10px 0;
+    display: block;
+}
+
+.delete-btn {
+    width: 100%;
+    background-color: #e61e43; /* Red like the reference */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.delete-btn:hover {
+    background-color: #b31632;
+}
+
+/* 1. Only style the 'No uploads yet' text as white */
+#localFileContainer > p {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* 2. Ensure text inside the actual quiz-card is dark/readable */
+.quiz-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    color: #333; /* Dark grey for readability on white background */
+    text-align: left;
+    width: 90%;           /* Takes up 90% of the screen on mobile */
+    max-width: 600px;     /* Limits the width to 600px on larger screens */
+    
+    display: flex;        /* Optional: helps align internal content */
+    flex-direction: column;
+}    
+
+.quiz-card h3 {
+    color: #000; /* Pitch black for the title */
+    margin-bottom: 10px;
+}
+
+.quiz-card p, .quiz-card small {
+    color: #555; /* Medium grey for the file details */
+}
+
+.proof-preview {
+    max-width: 100%;      /* Image will scale with the card */
+    height: auto;
+    border-radius: 8px;
+    margin: 15px 0;
+}
