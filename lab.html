@@ -17,7 +17,7 @@
 
         <div class="container">
             <h2>Lab Work Upload</h2>
-            <form class="uploadForm">
+            <form id="labForm" class="uploadForm">
                 <label>Title/Description:</label>
                 <input type="text" id="title" placeholder="Enter lab work title" required>
 
@@ -40,6 +40,10 @@
             <a href="Lab/act-3.html" class="activity">Lab Activity 3</a>
         </div>
 
+        <div id="localFileContainer" class="content">
+            <p id="emptyMessage">No files saved yet.</p>
+        </div>     
+        
         <script src="upload.js"></script>
     </body>
 </html>
