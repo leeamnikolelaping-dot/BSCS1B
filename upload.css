@@ -186,7 +186,6 @@ summary {
     border-top: 1px solid #ccc; 
 }
 
-/* Container for the column of cards */
 #localFileContainer {
     display: flex;
     flex-direction: column;
@@ -197,7 +196,7 @@ summary {
 }
 
 .proof-preview {
-    width: 150px; /* Small preview like the reference */
+    width: 150px;
     border-radius: 8px;
     margin: 10px 0;
     display: block;
@@ -205,7 +204,7 @@ summary {
 
 .delete-btn {
     width: 100%;
-    background-color: #e61e43; /* Red like the reference */
+    background-color: #e61e43; 
     color: white;
     border: none;
     padding: 10px;
@@ -219,7 +218,6 @@ summary {
     background-color: #b31632;
 }
 
-/* 1. Only style the 'No uploads yet' text as white */
 #localFileContainer > p {
     color: white;
     font-size: 1.5rem;
@@ -229,7 +227,6 @@ summary {
     margin-top: 20px;
 }
 
-/* 2. Ensure text inside the actual quiz-card is dark/readable */
 .quiz-card {
     background: white;
     border-radius: 12px;
