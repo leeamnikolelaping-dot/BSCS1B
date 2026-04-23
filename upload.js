@@ -1,34 +1,101 @@
-// 1. Create the reusable function
-function handleFormSubmission(formId, typeName) {
-    const form = document.getElementById(formId);
-    
-    // Safety check: only run if the form actually exists on the current page
-    if (!form) return;
+const getCategory = () => {
+    const path = window.location.pathname;
+    if (path.includes('lab')) return 'uploads_lab';
+    if (path.includes('exam')) return 'uploads_exam';
+    return 'uploads_quiz'; // Default fallback
+};
 
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
+const CURRENT_STORAGE_KEY = getCategory();
 
-        // Get values (these IDs should be the same in both forms)
-        const title = form.querySelector('input[type="text"]').value;
-        const status = document.getElementById('statusMessage');
+document.addEventListener('DOMContentLoaded', () => {
+    displaySavedFiles();
+    setupSidepanel(); // Ensure sidebar still works
+});
 
-        console.log(`Submitting ${typeName}:`, title);
+const uploadForm = document.querySelector('.uploadForm');
+if (uploadForm) {
+    uploadForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
 
-        // Success message
-        if (status) {
-            status.innerHTML = `<p style="color: green;">Success! Your ${typeName} "${title}" has been submitted.</p>`;
-        }
+        const title = document.getElementById('title').value;
+        const mainFile = document.querySelector('input[type="file"]:not(#proofImage)').files[0];
+        const proofImage = document.getElementById('proofImage').files[0];
 
-        this.reset();
+        if (!mainFile || !proofImage) return alert("Please select both files!");
+
+        // Convert files to Base64
+        const fileData = await toBase64(mainFile);
+        const proofData = await toBase64(proofImage);
+
+        const newEntry = {
+            id: Date.now(),
+            title: title,
+            fileName: mainFile.name,
+            fileContent: fileData,
+            proof: proofData,
+            date: new Date().toLocaleString()
+        };
+
+        // Save specifically to the current category (Lab, Quiz, or Exam)
+        const savedData = JSON.parse(localStorage.getItem(CURRENT_STORAGE_KEY) || '[]');
+        savedData.push(newEntry);
+        localStorage.setItem(CURRENT_STORAGE_KEY, JSON.stringify(savedData));
+
+        alert(`Successfully saved to ${CURRENT_STORAGE_KEY.replace('uploads_', '')}!`);
+        uploadForm.reset();
+        displaySavedFiles();
     });
 }
 
-// 2. Initialize the logic for both (one will run depending on which page you are on)
-handleFormSubmission('labForm', 'Lab');
-handleFormSubmission('quizForm', 'Quiz');
-handleFormSubmission('examForm', 'Exam');
+function displaySavedFiles() {
+    const container = document.getElementById('localFileContainer');
+    if (!container) return;
 
-// Function for handling the sidepanel interaction
+    const data = JSON.parse(localStorage.getItem(CURRENT_STORAGE_KEY) || '[]');
+    
+    if (data.length === 0) {
+        const category = CURRENT_STORAGE_KEY.split('_')[1];
+        const displayNames = {
+            quiz: "quizzes",
+            lab: "lab works",
+            exam: "exams"
+        };
+        const finalName = displayNames[category] || category;
+        container.innerHTML = `<p>No ${finalName} uploaded yet.</p>`;
+        return;
+    }
+
+    container.innerHTML = data.map(item => `
+        <div class="quiz-card">
+            <h3>${item.title}</h3>
+            <img src="${item.proof}" alt="Proof" class="proof-preview">
+            <p><small>File: ${item.fileName} | Date: ${item.date}</small></p>
+            <div class="card-actions">
+                <a href="${item.fileContent}" download="${item.fileName}" class="download-link">⬇️ Download File</a>
+                <button class="delete-btn" onclick="deleteEntry(${item.id})">Delete</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function deleteEntry(id) {
+    if (confirm("Delete this entry?")) {
+        let data = JSON.parse(localStorage.getItem(CURRENT_STORAGE_KEY) || '[]');
+        data = data.filter(item => item.id !== id);
+        localStorage.setItem(CURRENT_STORAGE_KEY, JSON.stringify(data));
+        displaySavedFiles();
+    }
+}
+
+function toBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+}
+
 function setupSidepanel() {
     const toggleBtn = document.getElementById('sidebarToggleBtn');
     const sidebar = document.getElementById('mySidebar');
@@ -37,13 +104,13 @@ function setupSidepanel() {
     if (!toggleBtn || !sidebar) return;
 
     // Listen for a click on the button
-    toggleBtn.addEventListener('click', function() {
-        // 'this' refers to the toggle button that was clicked
-        // Toggling the 'active' class on both triggers the CSS transition
+    toggleBtn.onclick = function() {
         sidebar.classList.toggle('active');
         this.classList.toggle('active');
-    });
+    };
 }
 
-// Call the function when the script runs
-setupSidepanel();
+document.addEventListener('DOMContentLoaded', () => {
+    displaySavedFiles(); // Load the correct list (Quiz, Lab, or Exam)
+    setupSidepanel();    // Start the sidebar listener
+});
