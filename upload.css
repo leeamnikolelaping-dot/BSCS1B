@@ -186,6 +186,7 @@ summary {
     border-top: 1px solid #ccc; 
 }
 
+/* Container for the column of cards */
 #localFileContainer {
     display: flex;
     flex-direction: column;
@@ -196,7 +197,7 @@ summary {
 }
 
 .proof-preview {
-    width: 150px;
+    width: 150px; /* Small preview like the reference */
     border-radius: 8px;
     margin: 10px 0;
     display: block;
@@ -204,7 +205,7 @@ summary {
 
 .delete-btn {
     width: 100%;
-    background-color: #e61e43; 
+    background-color: #e61e43; /* Red like the reference */
     color: white;
     border: none;
     padding: 10px;
@@ -218,41 +219,131 @@ summary {
     background-color: #b31632;
 }
 
-#localFileContainer > p {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    text-align: center;
-    margin-top: 20px;
+/* Container holding the stacked cards */
+#localFileContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    padding: 20px 0;
 }
 
+/* Updated Card Layout: Splitting image left, text right */
 .quiz-card {
     background: white;
     border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    color: #333; /* Dark grey for readability on white background */
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    color: #333; 
     text-align: left;
-    width: 90%;           /* Takes up 90% of the screen on mobile */
-    max-width: 600px;     /* Limits the width to 600px on larger screens */
+    width: 90%;           
+    max-width: 650px;     
+    margin: 0 auto;
     
-    display: flex;        /* Optional: helps align internal content */
-    flex-direction: column;
+    /* Using grid to cleanly separate the columns */
+    display: grid;
+    grid-template-columns: 180px 1fr; 
+    gap: 25px;
+    align-items: start;
 }    
 
+/* Right Column Wrapper */
+.card-details {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .quiz-card h3 {
-    color: #000; /* Pitch black for the title */
-    margin-bottom: 10px;
+    color: #000; 
+    font-size: 1.4rem;
+    margin-bottom: 12px;
 }
 
-.quiz-card p, .quiz-card small {
-    color: #555; /* Medium grey for the file details */
+/* Metadata Text & Download Link */
+.card-meta {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px; /* Forces spacing down to the button */
 }
 
+.download-link {
+    display: inline-block;
+    margin-top: 8px;
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.download-link:hover {
+    text-decoration: underline;
+}
+
+/* Left Column: Image formatting */
 .proof-preview {
-    max-width: 100%;      /* Image will scale with the card */
+    width: 100%;      
     height: auto;
+    max-height: 220px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin: 0; 
+}
+
+/* Full width Red Delete Button */
+.delete-btn {
+    width: 100%;
+    background-color: #e61e43; 
+    color: white;
+    border: none;
+    padding: 12px;
     border-radius: 8px;
-    margin: 15px 0;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: background 0.2s ease;
+    margin-top: auto; /* Aligns perfectly to the bottom-right corner */
+}
+
+.delete-btn:hover {
+    background-color: #b31632;
+}
+
+/* Container section to handle spacing at the bottom of the page */
+.static-image-section {
+    width: 90%;
+    max-width: 650px;     /* Matches the upper form container width */
+    margin: 40px auto;    /* Spacing between the form and this section */
+}
+
+/* The large white card that holds both the header and the vertical image */
+.large-image-container {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;        /* Slightly uniform padding around the inner content */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column; /* Stacks the header directly on top of the image */
+    align-items: flex-start; /* Aligns text cleanly to the left inside the card */
+    width: 100%;
+}
+
+/* Header text now styled black and positioned inside the card */
+.section-header {
+    color: #000000;       /* Pitch black text for contrast against the white card */
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 15px;  /* Clean separation spacing before the image starts */
+    text-shadow: none;    /* Removed the shadow since it's no longer on the background */
+    text-align: center;
+}
+
+/* Forces the vertical image to display cleanly at full size */
+.large-image-container img {
+    width: 100%;          /* Stretches to the inner width of the white card */
+    height: auto;         /* Maintains aspect ratio for vertical documents */
+    border-radius: 8px;
+    display: block;
 }
